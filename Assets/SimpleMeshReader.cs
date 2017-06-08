@@ -24,7 +24,6 @@ public class SimpleMeshReader : MonoBehaviour {
 	
 	}
 
-	// ファイルの読み込み
 	bool ReadFile() {
 
 		try {
@@ -38,7 +37,7 @@ public class SimpleMeshReader : MonoBehaviour {
 			string line = "";
 			int i, numVertex, numTriangle;
 		
-			//データ数の読み込み
+			//Reading the number of data
 			for( i = 0; i < 2; ++i ) {
 				line = reader.ReadLine();
 			}
@@ -48,7 +47,7 @@ public class SimpleMeshReader : MonoBehaviour {
 			numVertex   = int.Parse( numbers[0] );
 			numTriangle = int.Parse( numbers[1] );
 
-			//座標
+			//Vertex
 			for( i = 0; i < numVertex; ++i ) {
 				line = reader.ReadLine();
 				string[] vertex = line.Split( ' ' );
@@ -60,7 +59,7 @@ public class SimpleMeshReader : MonoBehaviour {
 				vertices.Add( new Vector3 ( x, y, z ) ) ;
 			}
 
-			//座標の配列
+			//Triangle
 			for( i = 0; i < numTriangle; ++i ) {
 				line = reader.ReadLine();
 				string[] triangle = line.Split( ' ' );
@@ -72,7 +71,7 @@ public class SimpleMeshReader : MonoBehaviour {
 
 			reader.Close();
 
-			//メッシュの設定
+			//Mesh setting
 			var mesh = new Mesh ();
 			mesh.vertices = vertices.ToArray ();
 			mesh.triangles = triangles.ToArray ();
